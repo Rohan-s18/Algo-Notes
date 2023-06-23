@@ -1,0 +1,29 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{algorithm} 
+\usepackage{algpseudocode} 
+
+\title{Greedy Algorithms}
+\author{Rohan Singh}
+\date{June 23, 2023}
+
+\begin{document}
+
+\maketitle
+This document contains some notes on some of the important stuff about greedy algorithms (their formulation/pseudocode) and their proofs for correctness techniques. In addition to the basic notes, this document also contains some of the more popular greedy algorithms. \\\\
+
+\section{Basics of Greedy Algorithms}
+
+A \textbf{greedy algorithm} always makes the choice that looks best at the moment. In other words, it makes a locally optimal choice in the hope that this choice will lead to a globally optimal solution. As seen in the introduction to dynamic programming (such as rod cutting), choosing the locally optimal choice at every point doesn't lead to a globally optimal solution.\\\\
+The place where greedy algorithms differ the most with dynamic programming is that unlike in dynamic programming, where you construct the solution to the problem using the solutions to the previous subproblems, in greedy algorithms you just select the optimal choice at the point. In other words, your current choice won't be influenced by previous selections (as it did in dynamic programming).\\\\
+
+\section{Proof of Correctness}
+The most important thing to prove for the correctness (and optimality) of greedy algorithms is that \textbf{the locally optimal choice will be globally optimal}. The main idea to prove the correctness is to show that making a greedy choice in the optimal solution will still return another optimal solution.\\\\
+Let the greedy algorithm produce a solution \textit{G} $\&$ let their be an optimal solution \textit{O} for the problem. Let the first \textit{k} (\textit{k} being an arbitrary integer) selections of the \textit{G} and \textit{O} be the same, i.e. the $k+1^t^h$ selection is different for \textit{G} and \textit{O}. We will call the $k+1^t^h$ selection for \textit{G} as \textbf{x} and the $k+1^t^h$ selection for \textit{O} as \textbf{y}.\\\\
+We must then prove that the solution constructed by choosing the greedy option \textbf{x} instead of \textbf{y} will still be optimal. In other words, $$O' = O + \textbf{x} - \textbf{y}$$ and we need to prove that \textit{O'} is also an optimal solution to the problem.
+
+\section{Partial Knapsack Problem}
+
+\section{Activity Selection Problem}
+
+\end{document}
