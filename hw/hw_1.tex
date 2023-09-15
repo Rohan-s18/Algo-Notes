@@ -1,0 +1,388 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\title{CSDS 410: Analysis of Algorithms}
+\author{Rachel Tjarksen}
+\date{Assignment 1}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Question 1}
+\subsection{a) R-1.12}
+\begin{algorithm}
+\caption{Loop2(n)}
+\begin{algorithmic}[Hhtbp]
+\State $p \gets 1$ \Comment{Initialize product}
+\For{$i \gets 1$ to $2n$} \Comment{Iterate from 1 to 2n}
+    \State $p \gets p \cdot i$ \Comment{Multiply by i}
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+\textbf{Loop2(n)}:
+\begin{itemize}
+    \item The loop iterates from 1 to \(2n\).
+    \item  In each iteration, a constant amount of work (multiplication and assignment) is done.
+    \item Therefore, the runtime complexity is \(O(n)\) because the number of iterations is directly proportional to \(n\).
+\end{itemize}
+
+\subsection{b) R-1.13}
+\begin{algorithm}
+\caption{Loop3(n)}
+\begin{algorithmic}[Hhtbp]
+\State $p \gets 1$ \Comment{Initialize product}
+\For{$i \gets 1$ to $n^2$}
+    \State $p \gets p \cdot i$
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+\textbf{Loop3(n)}:
+\begin{itemize}
+    \item The loop iterates from 1 to \(n^2\).
+    \item In each iteration, a constant amount of work (multiplication and assignment) is done.
+   \item Therefore, the runtime complexity is \(O(n^2)\) because the number of iterations is directly proportional to \(n^2\).
+\end{itemize}
+
+\subsection{c) R-1.14}
+\begin{algorithm}
+\caption{Loop4(n)}
+\begin{algorithmic}[Hhtbp]
+\State $s \gets 0$ 
+\For{$i \gets 1$ to $2n$} 
+    \For{$j \gets 1$ to $i$} 
+        \State $s \gets s + i$ 
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+\textbf{Loop4(n)}:
+\begin{itemize}
+    \item This loop consists of nested loops.
+    \item  The outer loop iterates from 1 to \(2n\).
+    \item  For each iteration of the outer loop, the inner loop iterates from 1 to the value of \(i\) (which varies with the outer loop).
+    \item The sum of iterations of the inner loop for all iterations of the outer loop is \(1 + 2 + 3 + \ldots + 2n\), which is proportional to \(n^2\).
+   \item Therefore, the runtime complexity is \(O(n^2)\) due to the nested loops.
+\end{itemize}
+
+\subsection{d) R-1.15}
+\begin{algorithm}
+\caption{Loop5(n)}
+\begin{algorithmic}[Hhtbp]
+\State $s \gets 0$ 
+\For{$i \gets 1$ to $n^2$} 
+    \For{$j \gets 1$ to $i$}
+        \State $s \gets s + i$
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+\textbf{Loop5(n)}:
+\begin{itemize}
+    \item Similar to Loop4, this loop also consists of nested loops.
+    \item  The outer loop iterates from 1 to \(n^2\).
+    \item  For each iteration of the outer loop, the inner loop iterates from 1 to the value of \(i\) (which varies with the outer loop).
+    \item  The sum of iterations of the inner loop for all iterations of the outer loop is also proportional to the sum of \(n^2\).
+    \item Therefore, the runtime complexity is \(O(n^3)\) due to the nested loops.
+\end{itemize}
+
+\newpage
+
+\section{Question 2}
+
+\subsection{a) R-1.20}
+To show that \((n + 1)^5\) is \(O(n^5)\), we can use the limit rule. We need to find the limit of the ratio as \(n\) approaches infinity:
+\[
+\lim_{{n \to \infty}} \frac{(n + 1)^5}{n^5}
+\]
+Using L'Hôpital's rule:
+\[
+\begin{align*}
+\lim_{{n \to \infty}} \frac{5(n + 1)^4}{5n^4} &= \lim_{{n \to \infty}} \frac{(n + 1)^4}{n^4} \\
+&= \lim_{{n \to \infty}} \frac{(n^4 + 4n^3 + 6n^2 + 4n + 1)}{n^4} \\
+&= \lim_{{n \to \infty}} \left(1 + \frac{4}{n} + \frac{6}{n^2} + \frac{4}{n^3} + \frac{1}{n^4}\right) \\
+&= 1
+\end{align*}
+\]
+Since the limit is a constant (not infinity), \((n + 1)^5\) is \(O(n^5)\).
+
+\subsection{b) R-1.21}
+To show that \(2^{n+1}\) is \(O(2^n)\), we can again use the limit rule:
+\[
+\lim_{{n \to \infty}} \frac{2^{n+1}}{2^n}
+\]
+Simplifying the limit:
+\[
+\begin{align*}
+\lim_{{n \to \infty}} \frac{2^{n+1}}{2^n} &= \lim_{{n \to \infty}} \frac{2^n \cdot 2}{2^n} \\
+&= \lim_{{n \to \infty}} 2 \\
+&= 2
+\end{align*}
+\]
+Since the limit is a constant (not infinity), \(2^{n+1}\) is \(O(2^n)\).
+
+\subsection{c) R-1.22}
+To show that \(n\) is \(o(n \log n)\) using the limit rule:
+\[
+\lim_{{n \to \infty}} \frac{n}{n \log n}
+\]
+This can be simplified as:
+\[
+\begin{align*}
+\lim_{{n \to \infty}} \frac{n}{n \log n} &= \lim_{{n \to \infty}} \frac{1}{\log n} \quad \text{(since the limit of \(\frac{n}{n}\) is 1)} \\
+&= 0
+\end{align*}
+\]
+Since the limit is 0, this shows that \(n\) is \(o(n \log n)\) using the limit rule.
+
+\subsection{d) R-1.23}
+To show that \(n^2\) is \(\omega(n)\), we need to find the limit of the ratio:
+\[
+\lim_{{n \to \infty}} \frac{n^2}{n}
+\]
+Simplifying the limit:
+\[
+\begin{align*}
+\lim_{{n \to \infty}} \frac{n^2}{n} &= \lim_{{n \to \infty}} n \\
+&= \infty
+\end{align*}
+\]
+Since the limit is infinity, \(n^2\) is \(\omega(n)\).
+
+\subsection{e) R-1.24}
+To show that \(n^3 \log n\) is \(\Omega(n^3)\), we need to find the limit of the ratio:
+\[
+\lim_{{n \to \infty}} \frac{n^3 \log n}{n^3}
+\]
+Simplifying the limit:
+\[
+\begin{align*}
+\lim_{{n \to \infty}} \frac{n^3 \log n}{n^3} &= \lim_{{n \to \infty}} \log n \\
+&= \infty
+\end{align*}
+\]
+Since the limit is infinity, \(n^3 \log n\) is \(\Omega(n^3)\).
+
+\newpage
+
+\section{Question 3}
+To show that \(\lceil f(n) \rceil\) is \(O(f(n))\) when \(f(n)\) is a positive non-decreasing function that is always greater than 1, we need to find constants \(C\) and \(n_0\) such that, for all \(n \geq n_0\):
+\[
+\lceil f(n) \rceil \leq C \cdot f(n)
+\]
+\\
+Since \(f(n)\) is always greater than 1 and is positive (non-decreasing), we know that:
+\[
+f(n) \leq \lceil f(n) \rceil
+\]
+Now, we can choose \(C \geq 2\) and \(n_0 \geq 1\) to prove the statement,
+for all \(n \geq 1\). Since \(f(n)\) is positive and non-decreasing, it follows that:
+\[
+\lceil f(n) \rceil \leq 2 \cdot f(n)
+\]
+for all \(n \geq 1\).\\
+Thus, we have shown that \(\lceil f(n) \rceil\) is \(O(f(n))\) when \(f(n)\) is a positive non-decreasing function that is always greater than 1.
+\newpage
+
+\section{Question 4}
+\subsection{a) Is \(3^x = O(2^x)\)?}
+To determine this, we need to calculate the limit of the ratio \(3^x/2^x\) as \(x\) approaches infinity:
+\[
+\lim_{{x \to \infty}} \frac{3^x}{2^x}
+\]
+Now, simplifying the limit:
+\[
+\lim_{{x \to \infty}} \frac{3^x}{2^x} = \lim_{{x \to \infty}} (\frac{3}{2})^x = \infty
+\]\\
+The limit is infinite, so \(3^x\) is not \(O(2^x)\).
+
+\subsection{b) Is \(\log_3 x = O(\log_2 x)\)?}
+We need to calculate the limit of the ratio \(\log_3 x / \log_2 x\) as \(x\) approaches infinity:
+\[
+\lim_{{x \to \infty}} \frac{\log_3 x}{\log_2 x}
+\]
+Using L'Hôpital's Rule we can evaluate this limit:
+\[
+\begin{align*}
+\lim_{{x \to \infty}} \frac{\log_3 x}{\log_2 x} &= \lim_{{x \to \infty}} \frac{\frac{d}{dx}(\log_3 x)}{\frac{d}{dx}(\log_2 x)} \\
+&= \lim_{{x \to \infty}} \frac{\frac{1}{x \ln 3}}{\frac{1}{x \ln 2}} \\
+&= \lim_{{x \to \infty}} \frac{\ln 2}{\ln 3} \\
+&= \frac{\ln 2}{\ln 3}
+\end{align*}
+\]
+The limit is finite, so \(\log_3 x\) is in \(O(\log_2 x)\). 
+\newpage
+
+\section{Question 5}
+\newpage
+
+\section{Question 6}
+\subsection{a) Pseudo Code}
+\begin{algorithm}
+\caption{Find the Missing Number}
+\begin{algorithmic}[H]
+\Function{FindMissingNumber}{$A, n$}
+    \State $expected\_sum \gets n \cdot (n + 1) / 2$
+    \State $actual\_sum \gets 0$
+    
+    \For{$i \gets 0$ \textbf{to} $n-1$}
+        \State $actual\_sum \gets actual\_sum + A[i]$
+    \EndFor
+    
+    \State \Return $expected\_sum - actual\_sum$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\subsection{b) Concept}
+The main concept behind this algorithm is to calculate the expected sum of all integers from 0 to n using the formula for the sum of an arithmetic series (n * (n + 1) / 2) and then calculate the actual sum of the elements in the array A. The missing number will be the difference between the expected sum and the actual sum.\\\\
+This works because when all numbers from 0 to n are present in the array, the sum of those numbers will be equal to the expected sum. If any number is missing, the difference between the expected sum and the actual sum will be equal to the missing number.
+
+\subsection{c) Example of Running Algorithm}
+Let's say we have an array $A$ with $n = 5$ elements: $ A = [4, 1, 0, 5, 2]$. We want to find the missing number. We first calculate:
+$$expected\_sum = 5 * (5 + 1) / 2 = 15$$
+Then, we calculate the actual sum of the elements in A:
+$$actual\_sum = 4 + 1 + 0 + 5 + 2 = 12$$
+Now, we find the missing number:
+$$missing\_number = expected\_sum - actual\_sum = 15 - 12 = 3
+$$
+We find the missing number to be 3.
+
+\subsection{d) Runtime Proof}
+The algorithm iterates through the array $A$ once, adding up all the elements in the array. This loop runs in $O(n)$ time, where $n$ is the number of elements in the array. Calculating the expected sum and the difference is done in constant time.
+
+\subsection{e) Space complexity proof}
+The algorithm only uses a constant amount of extra space to store the $expected\_sum$, $actual\_sum$, and a few loop control variables. It does not create any additional data structures or allocate memory based on the size of the input array. Hence, the extra space usage is $O(1)$.
+
+\newpage
+
+\section{Question 7}
+\subsection{a) Major Concept of the Algorithm}
+   The main idea of this algorithm is to merge the two sorted sequences A and B into a third sequence, C, while ensuring that duplicates are not included in the result. This can be done efficiently because the sequences are sorted. We maintain two pointers, one for each sequence, and compare elements at these pointers to determine which element should be added to C while skipping duplicates.
+
+\subsection{b) Pseudocode}
+\textbf{I apologize, LaTeX put my pseudocode on the next page}
+\begin{algorithm}
+\caption{Compute the Union of Two Sorted Sequences}
+\label{alg:union}
+\begin{algorithmic}[H]
+%\REQUIRE Sorted sequences A and B of length n
+%\ENSURE Sorted sequence C representing the union of A and B without duplicates
+\State $C \gets []$
+\State $i,j,k \gets 0$
+
+\While{$i < n$ \textbf{and} $j < n$}
+    \If{$A[i] < B[j]$}
+        \State $C[k] \gets A[i]$
+        \State $i \gets i+1$
+        \State $k \gets k+1$
+    \ElsIf{$A[i] > B[j]$}
+        \State $C[k] \gets B[j]$
+        \State $j \gets j+1$
+        \State $k \gets k+1$
+    \Else
+        \State \Comment{Both elements are equal, skip duplicates}
+        \State $C[k] \gets A[i]$
+        \State $i \gets i+1$
+        \State $j \gets j+1$
+        \State $k \gets k+1$
+    \EndIf
+\EndWhile
+
+\While{$i < n$}
+    \State $C[k] \gets A[i]$
+    \State $i \gets i+1$
+    \State $k \gets k+1$
+\EndWhile
+
+\While{$j < n$}
+    \State $C[k] \gets B[j]$
+    \State $j \gets j+1$
+    \State $k \gets k+1$
+\EndWhile
+
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+\subsection{c) Example}
+Let's say we have two sorted sequences $A = [1, 2, 2, 3, 4, 5]$ and $B = [2, 3, 3, 6, 7, 8]$. Using the algorithm above, we can compute the union of $A$ and $B$ as follows:
+\begin{itemize}
+    \item Initialize $C$ as an empty sequence.
+    \item Start with $i = 0$ and $j = 0$.
+    \item Compare $A[i]$ and $B[j]$. Since $A[i] < B[j]$, append 1 to $C$ and increment i.
+    \item Now, compare $A[i]$ and $B[j]$. Since $A[i] < B[j]$, append 2 to $C$ and increment i.
+    \item Now, $A[i] = B[j]$, so we append 2 to $C$ (skipping duplicates) and increment both i and j.
+    \item Continue this process until both sequences are exhausted.
+\end{itemize}
+
+
+The result in $C$ will be $[1, 2, 3, 4, 5, 6, 7, 8]$.
+
+\subsection{d) Runtime Complexity}
+The algorithm runs in $O(n)$ time because it performs a single pass through both sequences $A$ and $B$, comparing elements and appending them to $C$. Since each element in $A$ and $B$ is considered once and there are no nested loops or recursion, the time complexity is linear in the size of the input sequences.
+
+\subsection{e) Correctness Justification}
+The algorithm correctly computes the union of two sorted sequences $A$ and $B$ without duplicates. This is ensured by comparing elements at each step and skipping duplicates when they are equal (by incrementing the pointer for $B$). The merging process guarantees that elements are added in sorted order, and the final sequence $C$ contains all distinct elements from $A$ and $B$.
+
+\newpage
+
+\section{Question 8}
+
+\subsection{a) Major Concept of the Algorithm}
+Since there are $n$ distinct numbers in the range $0..n$, we can use an array ($frequency$) to keep track of the frequency of each number in $A$. By iterating through $A$ and incrementing the corresponding count in $frequency$, we can then identify the mode by finding the number with the highest count in $frequency$.
+
+\subsection{b) Pseudocode}
+\begin{algorithm}
+\caption{Find Mode in Array A}
+\label{alg:find_mode}
+\begin{algorithmic}[H]
+
+\State $frequency \gets [0,0,...0]$ \Comment{Size $n$ of zeros}
+\State $maxCount \gets 0$
+
+\For{each number $x \in A$}
+    \State $frequency[x] \gets frequency[x] + 1$
+    \If{$frequency[x] > maxCount$}
+        \State $maxCount \gets frequency[x]$
+        \State $mode \gets x$
+    \EndIf
+\EndFor
+
+\State \textbf{return} mode
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{c) Example}
+Let's say we have the array $A = [2, 3, 2, 1, 3, 4, 2, 3]$. Using the algorithm above, we can find the mode as follows:
+\begin{itemize}
+    \item Initialize an array `frequency` of size 9 (since the numbers are in the range from 1 to 8) with all elements set to 0.
+    \item  Start iterating through A:
+    \item  For the first element, 2, increment `frequency[2]` to 1.
+    \item For the second element, 3, increment `frequency[3]` to 1.
+    \item For the third element, 2, increment `frequency[2]` to 2.
+    \item  And so on...
+    \item After processing all elements in A, we find that the number 2 has the highest frequency (count of 3), so the mode is 2.
+\end{itemize}
+
+
+\subsection{d) Runtime Complexity}
+The algorithm has a time complexity of $O(n)$ because it iterates through the array $A$ once, and for each element, it performs constant-time operations such as incrementing counters and comparing counts. Since the range of numbers is from 1 to $n$, the frequency array has a \textit{constant size}, making the overall time complexity linear in the size of $A$.
+
+\subsection{e) Correctness Justification}
+The algorithm correctly finds the mode of the array $A$. By maintaining a frequency array and updating it as we iterate through $A$, we keep track of how many times each number appears in $A$. The mode is the number with the highest count in the frequency array, which is identified by comparing counts during the iteration. Since the algorithm considers all elements in $A$ and correctly updates the counts, it provides the correct mode of the input array.
+
+
+\newpage
+
+\end{document}
